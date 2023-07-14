@@ -1,0 +1,136 @@
+/* FONT FAMILY */
+/* 
+* Kumbh Sans 
+* CSS Rules :  font-family: 'Kumbh Sans', sans-serif;
+*/
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@500&display=swap'); 
+
+/* 
+* Roboto Slab
+* CSS Rules :  font-family: 'Roboto Slab', serif;
+*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap');
+
+/* 
+* Space Mono
+* CSS Rules :  font-family: 'Space Mono', monospace;
+*/
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
+/* Variables de couleurs CSS */
+
+:root
+{
+    --orange: #F87070;
+    --cyan: #70F3F8;
+    --violet: #D881F8;
+    --grey: #D7E0FF;
+    --greywhite: #EFF1FA;
+    --bluedark: #1E213F;
+    --verydarkblue:#161932
+}
+
+* 
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body
+{
+    background-color: var(--verydarkblue);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+header
+{
+    width: 157px;
+    height: 40px;
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Kumbh Sans', sans-serif;
+    font-weight: bold;
+    font-size: 32px;
+    color: var(--greywhite);
+}
+
+nav
+{
+    width: 373px;
+    height: 63px;
+    border: 1px solid red;
+}
+
+.clock
+{
+    height: 410px;
+    width: 410px;
+    border: 1px solid green;
+}
+
+.oval
+{
+    height: 410px;
+    width: 410px;
+    border-radius: 50%;
+    background: linear-gradient(315deg, rgba(46,50,90,1) 0%, rgba(14,17,42,1) 100%);
+    filter: drop-shadow(50px 50px 100px #121530) drop-shadow(-50px -50px 100px #272C5A);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.oval-copy
+{
+    width: 366px;
+    height: 366px;
+    border-radius: 50%;
+    background-color: var(--verydarkblue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.time
+{
+    color: var(--grey);
+    text-align: center;
+    font-family: Kumbh Sans;
+    font-size: 100px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -5px;
+    position: absolute;
+    display:flex;
+}
+
+.pause
+{
+    color: var(--grey);
+    font-family: Kumbh Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 15px;
+    position: absolute;
+    top: 70%;
+    cursor: pointer;
+}
+
+
+.settings
+{
+    width: 27px;
+    height: 28px;
+    border: 1px solid red;
+}
