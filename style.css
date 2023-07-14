@@ -18,7 +18,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
 
 /* Variables de couleurs CSS */
-
 :root
 {
     --orange: #F87070;
@@ -27,19 +26,21 @@
     --grey: #D7E0FF;
     --greywhite: #EFF1FA;
     --bluedark: #1E213F;
-    --verydarkblue:#161932
+    --verydarkblue:#161932;
 }
 
+/* CSS STYLES */
 * 
 {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    user-select: none;
 }
 
 body
 {
-    background-color: var(--verydarkblue);
+    background-color: var(--bluedark);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -51,7 +52,7 @@ header
 {
     width: 157px;
     height: 40px;
-    border: 1px solid white;
+    /* border: 1px solid white; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,14 +66,44 @@ nav
 {
     width: 373px;
     height: 63px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
+    border-radius: 31.5px;
+    background-color: var(--verydarkblue);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+nav div{
+    width: 120px;
+    height: 48px;
+    border-radius: 26.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-item
+{
+    color: var(--grey);
+    font-family: 'Kumbh Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.active
+{
+    background: #F87070; 
+    color: var(--verydarkblue);
 }
 
 .clock
 {
     height: 410px;
     width: 410px;
-    border: 1px solid green;
+    /* border: 1px solid green; */
 }
 
 .oval
@@ -113,7 +144,15 @@ nav
     display:flex;
 }
 
-.pause
+.svg
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.start
 {
     color: var(--grey);
     font-family: Kumbh Sans;
@@ -125,6 +164,13 @@ nav
     position: absolute;
     top: 70%;
     cursor: pointer;
+    z-index: 1;
+    transition: 0.4s;
+}
+
+.start:hover
+{
+    color: var(--orange);
 }
 
 
@@ -132,5 +178,15 @@ nav
 {
     width: 27px;
     height: 28px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
+}
+
+.settings svg
+{
+    cursor: pointer;
+}
+
+.settings:hover
+{
+    transform: scale(1.1);
 }

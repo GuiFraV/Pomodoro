@@ -1,40 +1,130 @@
 const time = document.querySelector('.time');
-const seconde = document.querySelector('.seconde');
-const minute = document.querySelector('.minute');
-const pause = document.querySelector('.pause');
+const start = document.querySelector('.start');
+const shortbreak = document.querySelector('.shortbreak');
 
-let minuteTimer = 25;
-let secondTimer = 2;
+const circle = document.querySelector('.circle');
+const radius = circle.r.baseVal.value;
+const circumference = 2 * Math.PI * radius;
+circle.style.strokeDasharray = `${circumference} ${circumference}`;
+circle.style.strokeDashoffset = 0;
 
-pause.addEventListener('click', () => {
-    if(pause.innerHTML === 'PAUSE') {
+let timer;
 
-        pause.innerHTML = 'PLAY';
+const nav = document.querySelectorAll('.nav-item');
 
-    }else{
+nav.forEach((item) => 
+{
+    item.addEventListener('click', function() {
+        nav.forEach((item) => item.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
 
-        pause.innerHTML = 'PAUSE';
-        // minute.innerHTML = minuteTimer;
-        timeInterval();
-        
+const timers = {
+    pomodoro: {
+        duration: 25,
+        timeLeft: undefined,
+    },
+    shortBreak: {
+        duration: 5,
+        timeLeft: undefined,
+    },
+    longBreak: {
+        duration: 15,
+        timeLeft: undefined,
+    },
+};
+
+let currentTimer = 'pomodoro';
+
+function switchTimer(timerName) 
+{
+    pauseTimer();
+    circle.style.strokeDashoffset = 0;
+    currentTimer = timerName;
+    const timerData = timers[currentTimer];  
+    if (timerData.timeLeft === undefined) {
+      startTimer(timerData.duration);
+    } else {
+      startTimer(timerData.timeLeft / 60);
+    }
+}
+
+function startTimer(duration) 
+{
+    const timerData = timers[currentTimer];
+    if(timerData.timeLeft === undefined){
+        timerData.timeLeft = duration * 60;
+    }
+    start.innerHTML = 'PAUSE';
+
+    timer = setInterval(function () {
+        let minutes = Math.floor(timerData.timeLeft / 60);
+        let secondes = timerData.timeLeft % 60;
+
+        time.textContent = `${minutes < 10 ? '0' + minutes : minutes }:${secondes < 10 ? '0' + secondes : secondes}`;
+
+        const percent = (timerData.timeLeft / (duration * 60)) * 100;
+        setProgress(percent);
+
+        timerData.timeLeft--;
+
+        if(timerData.timeLeft < 0){
+            clearInterval(timer);
+            time.textContent = '00:00';
+            start.innerHTML = 'RESTART';
+        }
+
+    }, 1000);
+
+    start.innerHTML = 'PAUSE';
+
+}
+
+function pauseTimer() 
+{
+    clearInterval(timer);
+    start.innerHTML = 'PLAY';
+}
+
+function setProgress(percent) 
+{
+    const offset = circumference - (percent / 100 * circumference);
+    circle.style.strokeDashoffset = offset;
+}
+
+function restartTimer(duration) {
+    const timerData = timers[currentTimer];
+    timerData.timeLeft = undefined; 
+    circle.style.strokeDashoffset = 0; 
+    startTimer(duration);
+}
+
+start.addEventListener('click', function() 
+{
+    if (start.innerHTML === 'PLAY') {
+      switchTimer(currentTimer);
+    } else if (start.innerHTML === 'PAUSE') {
+      pauseTimer();
+    } else if (start.innerHTML === 'RESTART') {
+      timers[currentTimer].timeLeft = undefined;
+      switchTimer(currentTimer);
     }
 });
 
+shortbreak.addEventListener('click', function() 
+{
+    switchTimer('shortBreak'); 
+});
 
+const pomodoro = document.querySelector('.pomodoro');
+pomodoro.addEventListener('click', function() 
+{
+  switchTimer('pomodoro');
+});
 
-function timeInterval(){
-
-    setInterval(() => 
-    {
-        seconde.innerHTML = secondTimer--;
-
-        console.log(secondTimer);
-
-        if(secondTimer === -1){
-            secondTimer = 2;
-            minute.innerHTML = minuteTimer--;
-
-        }
-    
-    },1000);
-}
+const longbreak = document.querySelector('.longbreak');
+longbreak.addEventListener('click', function() 
+{
+    switchTimer('longBreak'); 
+});
