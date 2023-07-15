@@ -95,7 +95,7 @@ nav div{
 
 .active
 {
-    background: #F87070; 
+    background: var(--orange); 
     color: var(--verydarkblue);
 }
 
@@ -430,6 +430,10 @@ nav div{
     border-radius: 26.5px;
     background: var(--orange);
     cursor: pointer;
+}
 
+.settings__modal__footer__apply:hover
+{
+    color: black;
 }
 
