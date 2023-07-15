@@ -173,7 +173,6 @@ nav div{
     color: var(--orange);
 }
 
-
 .settings
 {
     width: 27px;
@@ -190,3 +189,247 @@ nav div{
 {
     transform: scale(1.1);
 }
+
+.settings__modal
+{
+    position:absolute;
+    background-color: white;
+    width: 540px;
+    height: 464px;
+    border-radius: 25px;
+    visibility: visible;
+}
+
+.settings__modal h2
+{
+    color: #161932;
+    font-family: Kumbh Sans;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.settings__modal__header
+{
+    display: flex;
+    justify-content: space-around;
+    gap: 16rem;
+    align-items: center;
+    border-bottom: 1px solid #E3E1E1;
+    height: 93px;
+}
+
+.settings__modal__header svg
+{
+    cursor: pointer;
+}
+
+.settings__modal__content
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    height: 371px;
+}
+
+.settings__modal__content__item
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 462px;
+    height: 109px;
+}
+
+.settings__modal__content__item h3
+{
+    color: #161932;
+    font-family: Kumbh Sans;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 5px;
+    position: absolute;
+    top:9em;
+}
+
+.settings__modal__content__item p
+{
+    color: #1E213F;
+    font-family: Kumbh Sans;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.settings__modal__content__item__time
+{
+    position: absolute;
+    top: 11.5em;
+}
+
+/* Cache les flèches par défaut */
+.settings__modal__content__item__time input::-webkit-outer-spin-button,
+.settings__modal__content__item__time input::-webkit-inner-spin-button 
+{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Style pour l'input */
+.settings__modal__content__item__time input[type='number'] {
+    background: #EFF1FA;
+    border: none;
+    border-radius: 10px;
+    width: 140px;
+    height: 48px;
+    padding-left: 16px;
+    padding-right: 15px;
+    outline: none;
+    color: #1E213F;
+
+    font-family: 'Kumbh Sans', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    -moz-appearance: textfield;
+}
+
+.settings__modal__content__item__time .number-input {
+    position: relative;
+}
+
+.settings__modal__content__item__time .number-input svg {
+    position: absolute;
+    right: 10px;
+    top: 45%;
+    transform: translateY(-50%);
+    pointer-events: auto;
+    cursor:pointer;
+    /* border: 1px solid red; */
+    height: 17px;
+    width: 12px;
+}
+
+.settings__modal__content__item__time .number-input .arrow-down {
+    margin-top: 10px;
+}
+
+.separator
+{
+    width: 462px;
+    height: 1px;
+    background-color: #E3E1E1;
+}
+
+.separator:nth-of-type(2) {
+    position: relative;
+    bottom: 1.5em;
+}
+
+.settings__modal__content__font,
+.settings__modal__content__color
+{
+    /* border: 1px solid red; */
+    width: 462px;
+    height: 40px;
+
+}
+
+.settings__modal__content__font
+{
+    position: relative;
+    top: -1em;
+}
+
+.settings__modal__content__font h3,
+.settings__modal__content__color h3
+{
+    color: #161932;
+    font-family: Kumbh Sans;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 5px;
+    position: absolute;
+}
+
+.settings__modal__content__font h3
+{
+    top:1em;
+}
+
+.settings__modal__content__color h3
+{
+    top: 1em;
+    left: 0em;
+}
+
+.settings__modal__content__color svg circle
+{
+    cursor: pointer;
+}
+
+.settings__modal__content__font__item,
+.settings__modal__content__color
+{
+    /* border: 1px solid blue; */
+    display: flex;
+    justify-content: flex-end;
+    gap:1em;
+}
+
+.settings__modal__content__font__item svg
+{
+    cursor: pointer;
+}
+
+
+/* Color */
+.settings__modal__content__color
+{
+    /* border: 1px solid red; */
+    position: relative;
+    bottom: 2em;
+}
+
+
+.settings__modal__footer,
+.settings__modal__footer__apply
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings__modal__footer
+{
+    /* border: 1px solid red; */
+    color: #FFF;
+    text-align: center;
+    font-family: Kumbh Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    position: relative;
+    bottom: 2em;
+}
+
+.settings__modal__footer__apply
+{
+    width: 140px;
+    height: 53px;
+    border-radius: 26.5px;
+    background: var(--orange);
+    cursor: pointer;
+
+}
+

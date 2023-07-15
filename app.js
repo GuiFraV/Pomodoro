@@ -1,3 +1,6 @@
+/*
+* Globals Variables
+*/ 
 const time = document.querySelector('.time');
 const start = document.querySelector('.start');
 const shortbreak = document.querySelector('.shortbreak');
@@ -37,6 +40,9 @@ const timers = {
 
 let currentTimer = 'pomodoro';
 
+/*
+* Fonctions / LOGIC
+*/ 
 function switchTimer(timerName) 
 {
     pauseTimer();
@@ -100,6 +106,9 @@ function restartTimer(duration) {
     startTimer(duration);
 }
 
+/*
+* Events Listeners
+*/ 
 start.addEventListener('click', function() 
 {
     if (start.innerHTML === 'PLAY') {
@@ -127,4 +136,33 @@ const longbreak = document.querySelector('.longbreak');
 longbreak.addEventListener('click', function() 
 {
     switchTimer('longBreak'); 
+});
+
+document.querySelectorAll('.number-input').forEach(function(numberInput) {
+    const input = numberInput.querySelector('input');
+    const arrowUp = numberInput.querySelector('.arrow-up');
+    const arrowDown = numberInput.querySelector('.arrow-down');
+
+    arrowUp.addEventListener('click', function() {
+        const currentValue = parseInt(input.value, 10);
+        console.log(currentValue);
+        if (currentValue < 60) {
+            input.value = currentValue + 1;
+        }
+    });
+
+    arrowDown.addEventListener('click', function() {
+        const currentValue = parseInt(input.value, 10);
+        if (currentValue > 0) {
+            input.value = currentValue - 1;
+        }
+    });
+});
+
+document.querySelector('.settings__modal__header svg').addEventListener('click', () => {
+    document.querySelector('.settings__modal').style.visibility = 'hidden';
+});
+
+document.querySelector('.settings').addEventListener('click', () => {
+    document.querySelector('.settings__modal').style.visibility = 'visible';
 });
