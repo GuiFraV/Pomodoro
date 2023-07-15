@@ -103,7 +103,6 @@ nav div{
 {
     height: 410px;
     width: 410px;
-    /* border: 1px solid green; */
 }
 
 .oval
@@ -163,6 +162,8 @@ nav div{
     letter-spacing: 15px;
     position: absolute;
     top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     cursor: pointer;
     z-index: 1;
     transition: 0.4s;
@@ -197,7 +198,7 @@ nav div{
     width: 540px;
     height: 464px;
     border-radius: 25px;
-    visibility: visible;
+    visibility: hidden;
 }
 
 .settings__modal h2
@@ -223,6 +224,12 @@ nav div{
 .settings__modal__header svg
 {
     cursor: pointer;
+}
+
+.settings__modal__header svg:hover path 
+{
+    transform: scale(1.1);
+    fill: var(--orange);
 }
 
 .settings__modal__content
