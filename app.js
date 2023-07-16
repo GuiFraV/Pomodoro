@@ -59,9 +59,7 @@ function switchTimer(timerName)
 function startTimer(duration) 
 {
     const timerData = timers[currentTimer];
-    if(timerData.timeLeft === undefined){
-        timerData.timeLeft = duration * 60;
-    }
+    timerData.timeLeft = duration * 60;
     start.innerHTML = 'PAUSE';
 
     timer = setInterval(function () {
@@ -185,7 +183,9 @@ document.querySelector('.settings__modal__footer__apply').addEventListener('clic
     svgCircle.style.strokeDashoffset = '';  // Adjust as needed
 
     document.querySelector('.settings__modal').style.visibility = 'hidden';
-    restartTimer(timers.pomodoro.duration);
+    
+    // Restart the current timer with its new duration
+    restartTimer(timers[currentTimer].duration);
 });
 
 // Sélectionnez le parent contenant tous les cercles
@@ -197,49 +197,85 @@ const svgCircle = document.querySelector('.circle');
 // Select the path that draws the check
 const checkPath = document.querySelector('.settings__modal__content__color__item svg path');
 
-
 // Ajoutez un gestionnaire d'événement 'click' au parent
 colorContainer.addEventListener('click', function(event) {
 
+    // Vérifiez si un cercle a été cliqué
+    if (event.target.tagName === 'circle' || event.target.tagName === 'CIRCLE') {
+        // Obtenez la couleur de remplissage du cercle
+        const color = event.target.getAttribute('fill');
+        const cx = event.target.getAttribute('cx');
 
-        // Vérifiez si un cercle a été cliqué
-        if (event.target.tagName === 'circle' || event.target.tagName === 'CIRCLE') {
-            // Obtenez la couleur de remplissage du cercle
-            const color = event.target.getAttribute('fill');
-            const cx = event.target.getAttribute('cx');
-    
-            // Move the check to the clicked circle
-            if (cx == '20') {
-                checkPath.setAttribute('d', 'M14 20.5L17.9526 24.4526L26.4053 16');
-            } else if (cx == '76') {
-                // Added 56 to each x-coordinate
-                checkPath.setAttribute('d', 'M70 20.5L73.9526 24.4526L82.4053 16');
-            } else if (cx == '132') {
-                // Added 112 to each x-coordinate
-                checkPath.setAttribute('d', 'M126 20.5L129.9526 24.4526L138.4053 16');
-            }
-                // Vérifiez si un cercle a été cliqué
-                if (event.target.tagName === 'circle' || event.target.tagName === 'CIRCLE') {
-                    // Obtenez la couleur de remplissage du cercle
-                    const color = event.target.getAttribute('fill');
+        // Move the check to the clicked circle
+        if (cx == '20') {
+            checkPath.setAttribute('d', 'M14 20.5L17.9526 24.4526L26.4053 16');
+        } else if (cx == '76') {
+            // Added 56 to each x-coordinate
+            checkPath.setAttribute('d', 'M70 20.5L73.9526 24.4526L82.4053 16');
+        } else if (cx == '132') {
+            // Added 112 to each x-coordinate
+            checkPath.setAttribute('d', 'M126 20.5L129.9526 24.4526L138.4053 16');
+        }
+            // Vérifiez si un cercle a été cliqué
+            if (event.target.tagName === 'circle' || event.target.tagName === 'CIRCLE') {
+                // Obtenez la couleur de remplissage du cercle
+                const color = event.target.getAttribute('fill');
 
-                    // Utilisez la couleur de remplissage pour déterminer quelle couleur affecter à la variable --orange
-                    switch (color) {
-                        case '#F87070':
-                            document.documentElement.style.setProperty('--orange', '#F87070');  // Keep orange
-                            svgCircle.setAttribute('stroke', '#F87070');  // Change SVG circle stroke color to orange
-                            break;
-                        case '#70F3F8':
-                            document.documentElement.style.setProperty('--orange', '#70F3F8');  // Change to cyan
-                            svgCircle.setAttribute('stroke', '#70F3F8');  // Change SVG circle stroke color to cyan
-                            break;
-                        case '#D881F8':
-                            document.documentElement.style.setProperty('--orange', '#D881F8');  // Change to violet
-                            svgCircle.setAttribute('stroke', '#D881F8');  // Change SVG circle stroke color to violet
-                            break;
-                        default:
-                            console.log('Unrecognized color: ' + color);
-                    }
+                // Utilisez la couleur de remplissage pour déterminer quelle couleur affecter à la variable --orange
+                switch (color) {
+                    case '#F87070':
+                        document.documentElement.style.setProperty('--orange', '#F87070');  // Keep orange
+                        svgCircle.setAttribute('stroke', '#F87070');  // Change SVG circle stroke color to orange
+                        break;
+                    case '#70F3F8':
+                        document.documentElement.style.setProperty('--orange', '#70F3F8');  // Change to cyan
+                        svgCircle.setAttribute('stroke', '#70F3F8');  // Change SVG circle stroke color to cyan
+                        break;
+                    case '#D881F8':
+                        document.documentElement.style.setProperty('--orange', '#D881F8');  // Change to violet
+                        svgCircle.setAttribute('stroke', '#D881F8');  // Change SVG circle stroke color to violet
+                        break;
+                    default:
+                        console.log('Unrecognized color: ' + color);
                 }
             }
+        }
+});
+
+
+const fontContainer = document.querySelector('.settings__modal__content__font__item');
+
+fontContainer.addEventListener('click', function(event) {
+    // Vérifiez si un cercle a été cliqué
+    if (event.target.tagName === 'circle' || event.target.tagName === 'CIRCLE') {
+        // Si le cercle cliqué est déjà la couleur souhaitée, retournez tôt
+        if (event.target.getAttribute('fill') === '#161932') {
+            return;
+        }
+        // Obtenez l'index du SVG contenant le cercle cliqué
+        let svgIndex = Array.from(fontContainer.children).findIndex(svg => svg.contains(event.target));
+
+        // Remettez tous les cercles à leur couleur d'origine et faites tous les textes noirs
+        let allCircles = fontContainer.querySelectorAll('circle');
+        let allTexts = fontContainer.querySelectorAll('text');
+        allCircles.forEach((circle) => {
+            circle.setAttribute('fill', '#EFF1FA');
+        });
+        allTexts.forEach((text) => {
+            text.setAttribute('fill', '#161932');
+        });
+
+        // Changez la couleur du cercle cliqué et faites le texte blanc
+        event.target.setAttribute('fill', '#161932');
+        allTexts[svgIndex].setAttribute('fill', '#FFFFFF');
+
+        // Selon le cercle cliqué, modifiez la variable CSS pour la police
+        if (svgIndex === 0) {
+            document.documentElement.style.setProperty('--Kumbh', '"Kumbh Sans", sans-serif');
+        } else if (svgIndex === 1) {
+            document.documentElement.style.setProperty('--Kumbh', '"Roboto Slab", serif');
+        } else if (svgIndex === 2) {
+            document.documentElement.style.setProperty('--Kumbh', '"Space Mono", monospace');
+        }
+    }
 });
