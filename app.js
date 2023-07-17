@@ -68,6 +68,8 @@ function startTimer(duration)
 
         time.textContent = `${minutes < 10 ? '0' + minutes : minutes }:${secondes < 10 ? '0' + secondes : secondes}`;
 
+        document.title = `${minutes < 10 ? '0' + minutes : minutes }:${secondes < 10 ? '0' + secondes : secondes}`;
+
         const percent = (timerData.timeLeft / (duration * 60)) * 100;
         setProgress(percent);
 
