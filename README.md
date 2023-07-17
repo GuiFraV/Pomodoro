@@ -1,5 +1,5 @@
 # Pomodoro Timer
-Ce projet est une implémentation du challenge Pomodoro Timer disponible sur le site [Frontend Mentor](https://www.frontendmentor.io/challenges/pomodoro-app-KBFnycJ6G "frontendmentor pomodoro-app") de niveau avancé. Il permet à l'utilisateur de suivre le temps passé sur une tâche spécifique en utilisant la technique Pomodoro. L'utilisateur peut également prendre des pauses courtes et longues.
+Ce projet est une implémentation du challenge Pomodoro Timer disponible sur le site [Frontend Mentor](https://www.frontendmentor.io/challenges/pomodoro-app-KBFnycJ6G "pomodoro-app hub") de niveau avancé. Il permet à l'utilisateur de suivre le temps passé sur une tâche spécifique en utilisant la technique Pomodoro. L'utilisateur peut également prendre des pauses courtes et longues.
 
 
 ### Fonctionnalités :
@@ -25,3 +25,8 @@ Pour redémarrer la minuterie, cliquez sur le bouton "RESTART".
 - HTML
 - CSS
 - JavaScript
+
+
+### Demo
+
+![Screenshot](demo.gif)
